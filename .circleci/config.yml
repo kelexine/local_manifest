@@ -21,31 +21,40 @@ jobs:
             sudo ln -sf ~/bin/repo /usr/bin/repo
             git config --global user.name "kelexine"
             git config --global user.email "frankiekelechi@gmail.com"
-            python3 ~/bin/repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
-            python3 ~/bin/repo sync -j8
+            python3 ~/bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
+            python3 ~/bin/repo sync  --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j10
       - run:
           name: Clone device tree
+          command: |
+            cd ~/android/lineage
+            git clone https://github.com/kelexine/android_device_tecno_KG5j -b android-11 device/tecno/KG5j
+            git clone https://github.com/kelexine/android_vendor_tecno_KG5j -b KG5j vendor/tecno/KG5j
+      - run:
+          name: Setup CCACHE
           command: |
             cd ~/android/lineage
             mkdir ~/ccache
             export CCACHE_DIR=~/ccache
             export USE_CCACHE=1
             export CCACHE_EXEC=/usr/bin/ccache
-            ccache -M 50G
-            git clone https://github.com/kelexine/android_device_tecno_KG5j -b android-11 device/tecno/KG5j
-            git clone https://github.com/kelexine/android_vendor_tecno_KG5j -b KG5j vendor/tecno/KG5j
+            ccache -M 40G
       - run:
           name: Build ROM
           command: |
             cd ~/android/lineage
             source build/envsetup.sh
             lunch lineage_KG5j-eng
-            make clean
-            make apache-xml
-            make ims-common
-            brunch KG5j
+            mka clean
+            mka apache-xml
+            mka ims-common
+            mka bacon
       - store_artifacts:
             path: |
+               cd ~/android/lineage
+               ls out
+               ls out/target
+               ls out/target/product
+               ls out/target/product/KG5j
                ~/android/lineage/out/target/product/KG5j/*.zip
                ~/android/lineage/out/target/product/KG5j/*.img
 workflows:
