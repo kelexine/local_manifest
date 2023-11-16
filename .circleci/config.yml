@@ -22,7 +22,7 @@ jobs:
             git config --global user.name "kelexine"
             git config --global user.email "frankiekelechi@gmail.com"
             python3 ~/bin/repo init -u https://github.com/LineageOS/android.git -b lineage-18.1
-            python3 ~/bin/repo sync
+            python3 ~/bin/repo sync -j8
       - run:
           name: Clone device tree
           command: |
@@ -46,8 +46,8 @@ jobs:
             brunch KG5j
       - store_artifacts:
             path: |
-               ~/android/lineageout/target/product/KG5j/*.zip
-               ~/android/lineageout/target/product/KG5j/*.img
+               ~/android/lineage/out/target/product/KG5j/*.zip
+               ~/android/lineage/out/target/product/KG5j/*.img
 workflows:
   main:
     jobs:
