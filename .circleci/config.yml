@@ -44,13 +44,10 @@ jobs:
             make apache-xml
             make ims-common
             brunch KG5j
-      - run:
-          name: Upload artifact
-          command: |
-            cd ~/android/lineage
-            circleci artifacts upload --path out/target/product/KG5j/*.img
-            circleci artifacts upload --path out/target/product/KG5j/*.zip
-
+      - store_artifacts:
+            path: |
+               ~/android/lineageout/target/product/KG5j/*.zip
+               ~/android/lineageout/target/product/KG5j/*.img
 workflows:
   main:
     jobs:
