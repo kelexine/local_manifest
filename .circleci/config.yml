@@ -27,6 +27,7 @@ jobs:
           command: |
             cd ~/android/rom
             git clone https://github.com/kelexine/android_device_tecno_KG5j -b android-11 device/tecno/KG5j
+            git clone https://github.com/kelexine/android_vendor_tecno_KG5j -b KG5j vendor/tecno/KG5j
       - run:
           name: Build ROM
           command: |
