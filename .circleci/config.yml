@@ -14,7 +14,8 @@ jobs:
       - run:
           name: Set up Repo And Sync LinageOS source
           command: |
-            mkdir -p ~/android/lineage && cd ~/android/lineage
+            mkdir -p ~/android/lineage && cp fix.sh ~/android/lineage
+            cd ~/android/lineage
             mkdir -p ~/bin
             curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
             chmod a+x ~/bin/repo
@@ -26,7 +27,7 @@ jobs:
       - run:
           name: Clone Device Tree and Vendor Tree
           command: |
-            cd ~/android/lineage
+            cd ~/android/lineage && bash fix.sh
             git clone https://github.com/kelexine/android_device_tecno_KG5j -b android-11 device/tecno/KG5j
             git clone https://github.com/kelexine/android_vendor_tecno_KG5j -b KG5j vendor/tecno/KG5j
       - run:
