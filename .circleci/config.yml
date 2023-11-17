@@ -27,7 +27,8 @@ jobs:
       - run:
           name: Clone Device Tree and Vendor Tree
           command: |
-            cd ~/android/lineage && bash fix.sh
+            cd ~/android/lineage 
+            bash fix.sh
             git clone https://github.com/kelexine/android_device_tecno_KG5j -b android-11 device/tecno/KG5j
             git clone https://github.com/kelexine/android_vendor_tecno_KG5j -b KG5j vendor/tecno/KG5j
       - run:
@@ -38,7 +39,7 @@ jobs:
             export CCACHE_DIR=~/ccache
             export USE_CCACHE=1
             export CCACHE_EXEC=/usr/bin/ccache
-            ccache -M 40G
+            ccache -M 30G
             df -H
       - run:
           name: Start ROM Build
