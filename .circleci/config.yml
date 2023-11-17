@@ -40,7 +40,7 @@ jobs:
             ccache -M 40G
             df -H
       - run:
-          name: Build ROM
+          name: Start ROM Build
           command: |
             cd ~/android/lineage
             source build/envsetup.sh
