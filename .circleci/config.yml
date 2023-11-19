@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Set up Repo And Sync LinageOS source
           command: |
-            mkdir -p ~/android/lineage && cp fix.sh ~/android/lineage
+            mkdir -p ~/android/lineage
             cd ~/android/lineage
             mkdir -p ~/bin
             curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
@@ -22,13 +22,12 @@ jobs:
             sudo ln -sf ~/bin/repo /usr/bin/repo
             git config --global user.name "kelexine"
             git config --global user.email "frankiekelechi@gmail.com"
-            python3 ~/bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-19.1
+            python3 ~/bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
             python3 ~/bin/repo sync  --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j8
       - run:
           name: Clone Device Tree and Vendor Tree
           command: |
-            cd ~/android/lineage 
-            bash fix.sh
+            cd ~/android/lineage
             git clone https://github.com/kelexine/android_device_tecno_KG5j -b android-11 device/tecno/KG5j
             git clone https://github.com/kelexine/android_vendor_tecno_KG5j -b KG5j vendor/tecno/KG5j
       - run:
@@ -39,7 +38,7 @@ jobs:
             export CCACHE_DIR=~/ccache
             export USE_CCACHE=1
             export CCACHE_EXEC=/usr/bin/ccache
-            ccache -M 30G
+            ccache -M 40G
             df -H
       - run:
           name: Start ROM Build
