@@ -22,7 +22,7 @@ jobs:
             sudo ln -sf ~/bin/repo /usr/bin/repo
             git config --global user.name "kelexine"
             git config --global user.email "frankiekelechi@gmail.com"
-            python3 ~/bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
+            python3 ~/bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-19.1
             python3 ~/bin/repo sync  --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j8
       - run:
           name: Clone Device Tree and Vendor Tree
@@ -38,7 +38,7 @@ jobs:
             export CCACHE_DIR=~/ccache
             export USE_CCACHE=1
             export CCACHE_EXEC=/usr/bin/ccache
-            ccache -M 40G
+            ccache -M 30G
             df -H
       - run:
           name: Start ROM Build
