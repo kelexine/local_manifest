@@ -44,6 +44,7 @@ jobs:
           name: Start ROM Build
           command: |
             cd ~/android/lineage
+            ls *
             source build/envsetup.sh
             lunch lineage_KG5j-eng
             mka clean
