@@ -50,10 +50,10 @@ jobs:
             mka clean
             mka bacon -j10
             cd ~/android/lineage
-            ls out
-            ls out/target
-            ls out/target/product
-            ls out/target/product/KG5j
+            ls out/
+            ls out/target/
+            ls out/target/product/
+            ls out/target/product/KG5j/
       - store_artifacts:
             path: |
                ~/android/lineage/out/target/product/KG5j/*.zip
