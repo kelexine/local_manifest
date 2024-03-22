@@ -2,7 +2,7 @@
 <manifest>
 
  <!-- Trees -->
- <project path="device/tecno/kelly" name="kelexine/android_device_tecno_KG5j.git" remote="github" revision="lineage-18.1" />
+ <project path="device/tecno/kelly" name="kelexine/android_device_tecno_kelly.git.git" remote="github" revision="lineage-18.1" />
  <project path="vendor/tecno/KG5j" name="kelexine/android_vendor_tecno_KG5j.git" remote="github" revision="KG5j" />
  
 </manifest>
